@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS products (
     id BIGINT PRIMARY KEY NOT NULL,
-    product_id UNIQUE VARCHAR(200) NOT NULL,
+    product_id VARCHAR(200) NOT NULL UNIQUE,
     name VARCHAR(50) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
     inventory INTEGER NOT NULL,
