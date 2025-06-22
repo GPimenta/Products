@@ -16,11 +16,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/v1/products")
 public class ProductController {
-
     @Autowired
     private IProductService productService;
 
-    ///TODO Need to add @Transactions
     @PostMapping
     public ResponseEntity<?> createProduct(Product product, UriComponentsBuilder ucb) {
 
