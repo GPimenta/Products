@@ -1,6 +1,5 @@
 package com.example.MC.repository;
 
-import com.example.MC.model.Product;
 import com.example.MC.model.ProductDAO;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,5 +1,7 @@
 package com.example.MC.controller;
 
+import com.example.MC.model.Product;
+import com.example.MC.model.ProductDAO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,7 +22,10 @@ public class ProductControllerTest {
 
     @Test
     public void getProduct() {
-        ResponseEntity<String> response = restTemplate.getForEntity("/v1/products/aabb-1122", String.class);
+//        restTemplate.postForEntity()
+        ResponseEntity<Product> response = restTemplate.getForEntity("/v1/products/aabb-1122", Product.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getBody()).isNotNull();
+        assertThat(response.getBody().getName()).isEqualTo("dummy_name_1");
     }
 }

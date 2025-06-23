@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class ProductService implements IProductService{
 
     @Autowired
@@ -21,8 +20,9 @@ public class ProductService implements IProductService{
     }
 
     @Override
+//    @Transactional
     public ProductDAO createProduct(ProductDAO product) {
-        return productRepository.saveAndFlush(product);
+        return productRepository.saveAndFlush(product); // postgres has a conflict, thus not needing the saveandflush. We would need to add the query, making the DB responsible of the transaction implementation
     }
 
     @Override
@@ -31,11 +31,13 @@ public class ProductService implements IProductService{
     }
 
     @Override
+//    @Transactional
     public boolean deleteProduct(String productId) {
         return productRepository.deleteByProductId(productId);
     }
 
     @Override
+//    @Transactional
     public ProductDAO updateProduct(String productId, ProductDAO productDAO) {
         return productRepository.findByProductId(productId)
                 .map(productDAO1 -> productRepository.saveAndFlush(productDAO))

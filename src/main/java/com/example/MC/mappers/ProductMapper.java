@@ -14,7 +14,7 @@ public class ProductMapper {
         productDAO.setInventory(product.getInventory());
         productDAO.setBrand(product.getBrand());
 
-        return new ProductDAO();
+        return productDAO;
     }
 
     public static Product fromProductDAO(ProductDAO productDAO) {
@@ -26,6 +26,6 @@ public class ProductMapper {
         product.setInventory(productDAO.getInventory());
         product.setBrand(productDAO.getBrand());
 
-        return new Product();
+        return product;
     }
 }
