@@ -22,7 +22,7 @@ public class ProductController {
     private IProductService productService;
 
     @PostMapping
-    public ResponseEntity<?> createProduct(Product product, UriComponentsBuilder ucb) {
+    public ResponseEntity<?> createProduct(@RequestBody Product product, UriComponentsBuilder ucb) {
         if (productService.getProduct(product.getProductId()).isPresent()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
@@ -36,8 +36,7 @@ public class ProductController {
             URI uri = ucb.path("/v1/products/{productId}")
                     .buildAndExpand(validateProductDAO.get().getProductId())
                     .toUri();
-
-            return ResponseEntity.ok(uri);
+            return ResponseEntity.created(uri).build();
         }
     }
 
@@ -62,7 +61,6 @@ public class ProductController {
 
     @PutMapping("/{productId}")
     public ResponseEntity<?> updateProduct(@PathVariable String productId, @RequestBody Product product) {
-
         try {
             return ResponseEntity.ok(
                     ProductMapper.fromProductDAO(
